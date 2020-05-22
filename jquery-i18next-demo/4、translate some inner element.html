@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="container" data-i18n="two" data-i18n-target=".two">
+      <button class="one"></button>
+      <button class="two"></button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/19.4.4/i18next.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-i18next/1.2.1/jquery-i18next.min.js"></script>
+    <script>
+      i18next.init(
+        {
+          lng: "zh",
+          debug: true,
+          resources: {
+            zh: {
+              translation: {
+                one: "一",
+                two: "二",
+              },
+            },
+          },
+        },
+        function (err, t) {
+          // initialized and ready to go!
+        }
+      );
+
+      jqueryI18next.init(i18next, $, {
+        tName: "t",
+        i18nName: "i18n",
+        handleName: "localize",
+        selectorAttr: "data-i18n",
+        targetAttr: "i18n-target",
+        optionsAttr: "i18n-options",
+        useOptionsAttr: false,
+        parseDefaultValueFromContent: true,
+      });
+
+      $("#container").localize();
+    </script>
+  </body>
+</html>
